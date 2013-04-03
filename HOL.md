@@ -494,7 +494,7 @@ Send a few different tile designs through from the WPF test app and notice how t
 
 1. On the WPF Push Notification Client enter some message and click the **Send Toast** button. Observe how the Toast message arrives to the phone. Click the _Toast message_ to switch back to the application.
 
-	> **Note:** The complete solution for this exercise is provided at the following location: **Source\Ex2-TileToastNotifications\End**.
+	> **Note:** The complete solution for this exercise is provided at the following location: **Source\Ex1-ToastAndTileNotificationsForAlerts\End**.
 
 <a name="Summary" /> 
 ## Summary ##
