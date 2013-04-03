@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lab xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/ContentFramework.Core.Models">
+	<Id>LocalDBInWP</Id>
+	<Author>
+		<Name>{replace_with_content_author}</Name>
+	</Author>
+	<Description>This lab covers the push notification and also introduces the usage of http services in Windows Phone apps. During this lab you will create server side logic needed to send messages through Push Notification Service. You will create a simple Windows Phone 8 application which serves as a client to receive such notifications.</Description>  
+	<Document ConversionType="Html">.\HOL.md</Document>
+	<Title>Using Push Notifications in Windows Phone</Title>
+	<Version>1.0.0</Version>
+	<Source>.\Source</Source>
+	<DependencyChecker></DependencyChecker>
+	<CustomProperties>
+		<Property Name="GitHubRepository" Value="https://github.com/WindowsPhone-8-TrainingKit/HOL-UsingPushNotifications" />
+	</CustomProperties>   
+</Lab>
