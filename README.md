@@ -32,4 +32,4 @@ If you find any issues or opportunities for improving this hands-on lab, fix the
 
 ### Reporting Issues ###
 
-If you find any issues with this hands-on lab that you can't fix, feel free to report them in the [issues](https://github.com/WindowsPhone-8-TrainingKit/HOL-LocalDBInWP/issues) section of this repository.
+If you find any issues with this hands-on lab that you can't fix, feel free to report them in the [issues](https://github.com/WindowsPhone-8-TrainingKit/HOL-UsingPushNotifications/issues) section of this repository.
