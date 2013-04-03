@@ -51,6 +51,7 @@ The following is required to complete this hands-on lab:
 
 > **Note:** All of these Tools can be downloaded together in a single package from [http://developer.windowsphone.com](http://developer.windowsphone.com/)
 
+---
 <a name="Exercises" />
 ## Exercises ##
 
@@ -58,11 +59,9 @@ This hands-on lab comprises the following exercises:
 
 1. [Introduction to the Toast and Tile Notifications for Alerts](#Exercise1)
 
- 
- 
+
 Estimated time to complete this lab: **30 minutes**.
 
-### 
 <a name="Exercise1" />
 ## Exercise 1: Introduction to the Toast and Tile Notifications for Alerts ##
 
@@ -107,8 +106,9 @@ A cloud service can control a toast notification's title and sub-title. The toas
 
 		````XML
 		<endpoint address=http://localhost:8000/RegistrationService
-		````
-Replace **'localhost'** with the real name of your PC.
+````
+
+		Replace **'localhost'** with the real name of your PC.
 
 1. In the PushNotifications project (the WP8 client), open file MainPage.xaml.cs.
 
@@ -118,8 +118,9 @@ Replace **'localhost'** with the real name of your PC.
 		// Hardcode for solution - need to be updated in case the REST  
 		// WCF service address change
 		string baseUri = "http://localhost:8000/RegistrationService/Register?uri={0}";
-		````
-Replace '**localhost'** with the real name of your PC.
+````
+
+		Replace '**localhost'** with the real name of your PC.
 
 1. You must now open the port 8000 in your firewall for incoming HTTP access so that the client application running on the Windows Phone emulator can connect to the WCF service.
 
@@ -131,6 +132,7 @@ Replace '**localhost'** with the real name of your PC.
 1. Open the NotificationSenderUtility.cs file located under the NotificationSenderUtility project.
 
 1. Toast and Tile notification are system defined notification in Windows Phone 8 platform. This is different from RAW notifications, where all applications could create their own payload format and parse it accordingly. During next couple steps you will create general functionality to create Tile & Toast messages payload - this payload will work for any Windows Phone 8 application. In addition you will expose public functionality to send such messages and connect WPF Push Notification Client's buttons events to it. Locate the **SendXXXNotification functionality** region. Add the following public functions to the region (they will be used by the WPF application later):
+
 	<!-- mark:1-19 -->
 	````C#
 	public void SendToastNotification(List<Uri> Uris, string message1, 
@@ -152,11 +154,12 @@ Replace '**localhost'** with the real name of your PC.
 		foreach (var uri in Uris)
 			SendNotificationByType(uri, payload, NotificationType.Token, callback);
 	}
-	````
+````
 
 1. Next you'll create a new region with two functions - first to prepare the Toast notification payload, and second for Tile notification payload preparation.
 
 	Tile notification message to update tiles using the FlipTemplate should be in the following format.
+
 	<!-- mark:1-18 -->
 	````XML
 	Content-Type: text/xml
@@ -177,9 +180,10 @@ Replace '**localhost'** with the real name of your PC.
 			<wp:BackContent Action="Clear">[back of med tile content text]</wp:BackContent>
 		 </wp:Tile>
 	</wp:Notification>
-	````
+````
 
 	Toast notification message on the other hand should be in the following format. Notice that _\<Text1\>_ and _\<Text2\>_ are in string format.
+
 	<!-- mark:1-10 -->
 	````XML
 	Content-Type: text/xml
@@ -192,9 +196,10 @@ Replace '**localhost'** with the real name of your PC.
 	      <wp:Text2><string></wp:Text2>
 	   </wp:Toast>
 	</wp:Notification>
-	````
+````
 
 1. Create the **Prepare Payload** family of functions according to the following code snippet:
+
 	<!-- mark:3-88 -->
 	````C#
 	#region Prepare Payloads
@@ -287,7 +292,7 @@ Replace '**localhost'** with the real name of your PC.
 	}
 
 	#endregion
-	````
+````
 
 	> **Note:** The code for the **prepareTilePayload** method above only allows the BackgroundImageUri, SmallBackgroundImageUri, Title and Count tile properties to be set. This is done for simplicity in this lab.
 
@@ -297,6 +302,7 @@ Replace '**localhost'** with the real name of your PC.
 1. Open **MainWindow.xaml.cs** from the **Weather** project.
 
 1. Locate the **sendToast** function. This function should get the Toast message from the Push Notification Client UI and send it to all the subscribers. Add the following code snippet in the function body:
+
 	<!-- mark:3-7 -->
 	````C#
 	private void sendToast()
@@ -307,9 +313,10 @@ Replace '**localhost'** with the real name of your PC.
 	    ThreadPool.QueueUserWorkItem((unused) => notifier.SendToastNotification(subscribers,
 	        "WEATHER ALERT", msg, OnMessageSent));
 	}
-	````
+````
 
 1. Locate the **sendTile** function. This function should get the parameters from Push Notification Client UI and send it to all the subscribers. Add the following code snippet in the function body:
+
 	<!-- mark:3-7 -->
 	````C#
 	private void sendTile()
@@ -320,7 +327,7 @@ Replace '**localhost'** with the real name of your PC.
 	    List<Uri> subscribers = RegistrationService.GetSubscribers();
 	    ThreadPool.QueueUserWorkItem((unused) => notifier.SendTileNotification(subscribers, "PushNotificationsToken", "/Images/" + weatherType + ".png", "/Images/Small/" + weatherType + ".png", temperature, location, OnMessageSent));
 	}
-	````
+````
 
 1. Compile and run the applications. Check that messages are dispatched to the Push Notification Service.
 
@@ -334,12 +341,15 @@ Replace '**localhost'** with the real name of your PC.
 
 	> ![Multiple Startup Projects](./Images/Multiple-Startup-Projects.png?raw=true)
 
+	> _Selecting Multiple Startup Projects_
+
 <a name="Ex1Task3" />
 #### Task 3 - Processing Tile & Toast Notifications on the Phone ####
 
 1. Open **MainPage.xaml.cs** in the **PushNotifications** project.
 
 1. In the next few steps you will subscribe to Tile and Toast notification events and will handle those events. Locate the **Subscriptions** region and add the following code snippet:
+
 	<!-- mark:1-47 -->
 	````C#
 	private void SubscribeToNotifications()
@@ -389,9 +399,10 @@ Replace '**localhost'** with the real name of your PC.
 	        //handle error here
 	    }
 	}
-	````
+````
 
 1. Now locate the **SubscribeToChannelEvents** function and add the following highlighted code snippet to the function body:
+
 	<!-- mark:12-13 -->
 	````C#
 	private void SubscribeToChannelEvents()
@@ -408,9 +419,10 @@ Replace '**localhost'** with the real name of your PC.
 		//subscrive to toast notification when running app    
 		httpChannel.ShellToastNotificationReceived += new EventHandler<NotificationEventArgs>(httpChannel_ShellToastNotificationReceived);
 	}
-	````
+````
 
 1. Locate the **Channel event handlers** region and add the following function to handle the events:
+
 	<!-- mark:1-14 -->
 	````C#
 	void httpChannel_ShellToastNotificationReceived(object sender, NotificationEventArgs e)
@@ -427,19 +439,21 @@ Replace '**localhost'** with the real name of your PC.
 	         
 	   Trace("===============================================");
 	}
-	````
+````
 
 	> **Note:** In our simple case the functions just tracing the message payload, but in real-world application you could use it to perform any business logic.
 
 1. Lastly, add the following code snippet to the following number of locations:
+
 	<!-- mark:1 -->
 	````C#
 	SubscribeToNotifications();
-	````
+````
 
 	The locations to add this code snippet are the following:
 
 	1. In the **DoConnect** function, in the **try** block, between "_SubscribeToService();_" and "_Dispatcher.BeginInvoke();_"
+
 		<!-- mark:9-10 -->
 		````C#
 		if (null != httpChannel)
@@ -455,9 +469,10 @@ Replace '**localhost'** with the real name of your PC.
 		
 		    Dispatcher.BeginInvoke(() => UpdateStatus("Channel recovered"));
 		}
-		````
+````
 
 	1. In the **httpChannel_ChannelUriUpdated** function, between "_SubscribeToService();_" and "_Dispatcher.BeginInvoke(...);_"
+
 		<!-- mark:7 -->
 		````C#
 		void httpChannel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
@@ -469,7 +484,7 @@ Replace '**localhost'** with the real name of your PC.
 		    SubscribeToNotifications();
 		    Dispatcher.BeginInvoke(() => UpdateStatus("Channel created successfully"));
 		}
-		````
+````
 
 1. Press **F5** to compile and run the applications. On the phone emulator, click the Back button (![the Start Screen.](./Images/the-Start-Screen..png?raw=true "the Start Screen.")) to exit the Push Notification application and go to the Start Screen.
 
@@ -496,6 +511,7 @@ Send a few different tile designs through from the WPF test app and notice how t
 
 	> **Note:** The complete solution for this exercise is provided at the following location: **Source\Ex1-ToastAndTileNotificationsForAlerts\End**.
 
+---
 <a name="Summary" /> 
 ## Summary ##
 
