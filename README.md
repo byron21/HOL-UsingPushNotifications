@@ -8,7 +8,7 @@ Hands-on labs are sets of step-by-step guides that are designed to help you lear
 
 This lab covers the push notification and also introduces the usage of http services in Windows Phone apps. During this lab you will create server side logic needed to send messages through Push Notification Service. You will create a simple Windows Phone 8 application which serves as a client to receive such notifications.
 
-> **Note:** You can download the latest build of the Windows Phone 8 Training Kit which includes a tested version of this HOL from here: {training kit download link}
+> **Note:** You can download the latest build of the Windows Phone 8 Training Kit which includes a tested version of this HOL from here: http://go.microsoft.com/fwlink/?LinkID=294667
 
 ### Repository Structure ###
 
